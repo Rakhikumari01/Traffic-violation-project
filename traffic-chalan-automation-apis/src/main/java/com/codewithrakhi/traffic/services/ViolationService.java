@@ -16,4 +16,6 @@ public interface ViolationService {
     ViolationDto getViolationById(Integer violationId);
 
     List<ViolationDto> getViolationByUser(Integer userId);
+
+    List<ViolationDto> getViolationByPenalty(Integer penaltyId);
 }
