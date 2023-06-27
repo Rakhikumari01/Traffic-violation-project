@@ -86,8 +86,15 @@ public class ViolationServiceImpl implements ViolationService {
         return violationDtos;
     }
 
+    //testing on github by creating new branch and merging
     @Override
     public List<ViolationDto> getViolationByPenalty(Integer penaltyId) {
+        return null;
+    }
+
+    //testing on github by creating new branch and merging
+    @Override
+    public List<ViolationDto> getViolationByVehicleNo(Integer vehiclenumber) {
         return null;
     }
 }

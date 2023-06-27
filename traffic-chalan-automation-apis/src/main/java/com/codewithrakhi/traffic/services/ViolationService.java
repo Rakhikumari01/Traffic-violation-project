@@ -17,5 +17,8 @@ public interface ViolationService {
 
     List<ViolationDto> getViolationByUser(Integer userId);
 
+    //testing on github (creating new branch and adding)
     List<ViolationDto> getViolationByPenalty(Integer penaltyId);
+
+    List<ViolationDto> getViolationByVehicleNo(Integer vehiclenumber);
 }
