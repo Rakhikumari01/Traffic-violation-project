@@ -85,4 +85,9 @@ public class ViolationServiceImpl implements ViolationService {
 
         return violationDtos;
     }
+
+    @Override
+    public List<ViolationDto> getViolationByPenalty(Integer penaltyId) {
+        return null;
+    }
 }
