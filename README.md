@@ -1,5 +1,5 @@
 # Traffic-violation-project
-Developed a traffic violations API using Spring Boot, enabling CRUD operations on User, Violations, and Penalties
+Developed a traffic violations API using Spring Boot, enabling CRUD operations on #User, #Violations, and #Penalties
 entities.
 • Implemented service classes for business logic, database queries, transformations, and report generation. Integrated
 image recognition technology for efficient extraction of vehicle information from number plate images. Conducted
