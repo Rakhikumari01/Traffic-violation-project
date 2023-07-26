@@ -11,18 +11,17 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class Penalty
-{
+public class Penalty {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   private int penaltyId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int penaltyId;
 
-   private int fineAmount;
+    private int fineAmount;
 
-   private String penaltyType;
+    private String penaltyType;
 
-  @ManyToOne
-  private User user;
+    @ManyToOne
+    private User user;
 
 }

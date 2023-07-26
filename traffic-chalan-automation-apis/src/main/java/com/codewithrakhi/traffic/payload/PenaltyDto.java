@@ -19,7 +19,7 @@ public class PenaltyDto {
     private int fineAmount;
 
     @NotEmpty
-    @Size(max=25, message = "penalty description should not be more than 25 characters")
+    @Size(max = 25, message = "penalty description should not be more than 25 characters")
     private String penaltyType;
 
     private UserDto user;

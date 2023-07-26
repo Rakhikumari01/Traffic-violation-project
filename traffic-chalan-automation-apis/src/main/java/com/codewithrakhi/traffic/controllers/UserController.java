@@ -16,10 +16,10 @@ import java.util.List;
 @RequestMapping("api/users")
 public class UserController {
 
- @Autowired
- private UserService userService;
+    @Autowired
+    private UserService userService;
 
- //post-create user
+    //post-create user
     @PostMapping("/")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
 
@@ -30,39 +30,35 @@ public class UserController {
 
     //put-update user
     @PutMapping("/{userId}")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,@PathVariable("userId") Integer uid)
-    {
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @PathVariable("userId") Integer uid) {
         UserDto updateUser = this.userService.updateUser(userDto, uid);
         return ResponseEntity.ok(updateUser);
 
     }
 
-     //delete
+    //delete
     @DeleteMapping("/{userId}")
-    public ResponseEntity<ApiResponse> deleteUser(@PathVariable("userId") Integer uid)
-    {
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable("userId") Integer uid) {
         this.userService.deleteUser((uid));
-        return new ResponseEntity<ApiResponse> (new ApiResponse("User deleetd succesfully",true),HttpStatus.OK);
+        return new ResponseEntity<ApiResponse>(new ApiResponse("User deleetd succesfully", true), HttpStatus.OK);
     }
 
-//get all user
+    //get all user
     @GetMapping("/")
-    public ResponseEntity<List<UserDto>> getAllUsers(){
+    public ResponseEntity<List<UserDto>> getAllUsers() {
 
         return ResponseEntity.ok(this.userService.getAllUser());
     }
 
     //get single user
     @GetMapping("/{userId}")
-    public ResponseEntity<UserDto> getSingleUser(@PathVariable Integer userId)
-    {
+    public ResponseEntity<UserDto> getSingleUser(@PathVariable Integer userId) {
         return ResponseEntity.ok(this.userService.getUserById(userId));
     }
 
     //get user vehicle_no
     @GetMapping("vehicle/{vehicle_no}")
-    public ResponseEntity<List<UserDto>> getUserByvehicle(@PathVariable Integer vehicle_no)
-    {
+    public ResponseEntity<List<UserDto>> getUserByvehicle(@PathVariable Integer vehicle_no) {
         return ResponseEntity.ok(this.userService.getUserByvehicle_no(vehicle_no));
     }
 

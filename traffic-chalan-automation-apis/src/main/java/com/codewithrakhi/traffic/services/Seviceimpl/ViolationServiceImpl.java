@@ -28,10 +28,9 @@ public class ViolationServiceImpl implements ViolationService {
     private UserRepo userRepo;
 
     @Override
-    public ViolationDto addViolation(ViolationDto violationDto, Integer userId)
-    {
+    public ViolationDto addViolation(ViolationDto violationDto, Integer userId) {
 
-        User user = this.userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException("User","User id", userId));
+        User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "User id", userId));
 
         Violation violation = this.modelMapper.map(violationDto, Violation.class);
         violation.setViolationImage("default.jpg");
@@ -40,26 +39,26 @@ public class ViolationServiceImpl implements ViolationService {
         violation.setViolationTitle(violationDto.getViolationTitle());
 
         Violation newViolation = this.violationRepo.save(violation);
-        return this.modelMapper.map(newViolation,ViolationDto.class);
+        return this.modelMapper.map(newViolation, ViolationDto.class);
     }
 
     @Override
     public ViolationDto updateViolation(ViolationDto violationDto, Integer violationId) {
 
-       Violation violation = this.violationRepo.findById(violationId).orElseThrow(()-> new ResourceNotFoundException("Violation","violation id", violationId));
+        Violation violation = this.violationRepo.findById(violationId).orElseThrow(() -> new ResourceNotFoundException("Violation", "violation id", violationId));
 
-       violation.setViolationTitle(violationDto.getViolationTitle());
-       violation.setViolationImage(violationDto.getViolationImage());
+        violation.setViolationTitle(violationDto.getViolationTitle());
+        violation.setViolationImage(violationDto.getViolationImage());
 
-     Violation newviolation = this.violationRepo.save(violation);
-     return this.modelMapper.map(newviolation,ViolationDto.class);
+        Violation newviolation = this.violationRepo.save(violation);
+        return this.modelMapper.map(newviolation, ViolationDto.class);
 
     }
 
     @Override
     public void deleteViolation(Integer violationId) {
 
-        Violation violation = this.violationRepo.findById(violationId).orElseThrow(()-> new ResourceNotFoundException("Violation","violation id", violationId));
+        Violation violation = this.violationRepo.findById(violationId).orElseThrow(() -> new ResourceNotFoundException("Violation", "violation id", violationId));
 
         this.violationRepo.delete(violation);
 
@@ -69,19 +68,19 @@ public class ViolationServiceImpl implements ViolationService {
     @Override
     public ViolationDto getViolationById(Integer violationId) {
 
-        Violation violation = this.violationRepo.findById(violationId).orElseThrow(()->new ResourceNotFoundException("Violation", "violation id", violationId));
+        Violation violation = this.violationRepo.findById(violationId).orElseThrow(() -> new ResourceNotFoundException("Violation", "violation id", violationId));
 
-        return this.modelMapper.map(violation,ViolationDto.class);
+        return this.modelMapper.map(violation, ViolationDto.class);
 
     }
 
     @Override
     public List<ViolationDto> getViolationByUser(Integer userId) {
 
-        User user = this.userRepo.findById(userId).orElseThrow(()->new ResourceNotFoundException("User"," user id", userId));
+        User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " user id", userId));
         List<Violation> violations = this.violationRepo.findByUser(user);
 
-        List<ViolationDto> violationDtos = violations.stream().map((violation)-> this.modelMapper.map(violation,ViolationDto.class)).collect(Collectors.toList());
+        List<ViolationDto> violationDtos = violations.stream().map((violation) -> this.modelMapper.map(violation, ViolationDto.class)).collect(Collectors.toList());
 
         return violationDtos;
     }

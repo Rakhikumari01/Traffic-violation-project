@@ -31,22 +31,22 @@ public class PenaltyServiceImpl implements PenaltyService {
     @Override
     public PenaltyDto addPenalty(PenaltyDto penaltyDto, Integer userId) {
 
-     User user = this.userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException("User","User id",userId));
-     Penalty penalty = this.modelMapper.map(penaltyDto,Penalty.class);
+        User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "User id", userId));
+        Penalty penalty = this.modelMapper.map(penaltyDto, Penalty.class);
 
-     penalty.setPenaltyType(penaltyDto.getPenaltyType());
-     penalty.setFineAmount(penaltyDto.getFineAmount());
-     penalty.setUser(user);
+        penalty.setPenaltyType(penaltyDto.getPenaltyType());
+        penalty.setFineAmount(penaltyDto.getFineAmount());
+        penalty.setUser(user);
 
-     Penalty newPenalty = this.penaltyRepo.save(penalty);
-     return this.modelMapper.map(newPenalty,PenaltyDto.class);
+        Penalty newPenalty = this.penaltyRepo.save(penalty);
+        return this.modelMapper.map(newPenalty, PenaltyDto.class);
 
     }
 
     @Override
     public void deletePenalty(Integer penaltyId) {
 
-   Penalty penalty = this.penaltyRepo.findById(penaltyId).orElseThrow(()-> new ResourceNotFoundException("Penalty","Penaltu id",penaltyId));
+        Penalty penalty = this.penaltyRepo.findById(penaltyId).orElseThrow(() -> new ResourceNotFoundException("Penalty", "Penaltu id", penaltyId));
 
         this.penaltyRepo.delete(penalty);
     }
@@ -54,30 +54,30 @@ public class PenaltyServiceImpl implements PenaltyService {
     @Override
     public PenaltyDto updatePenalty(PenaltyDto penaltyDto, Integer penaltyId) {
 
-        Penalty penalty = this.penaltyRepo.findById(penaltyId).orElseThrow(()-> new ResourceNotFoundException("Penalty","Penalty id",penaltyId));
+        Penalty penalty = this.penaltyRepo.findById(penaltyId).orElseThrow(() -> new ResourceNotFoundException("Penalty", "Penalty id", penaltyId));
 
-         penalty.setPenaltyType(penaltyDto.getPenaltyType());
-         penalty.setFineAmount(penaltyDto.getFineAmount());
+        penalty.setPenaltyType(penaltyDto.getPenaltyType());
+        penalty.setFineAmount(penaltyDto.getFineAmount());
 
-         Penalty newPenalty = this.penaltyRepo.save(penalty);
-        return this.modelMapper.map(newPenalty,PenaltyDto.class);
+        Penalty newPenalty = this.penaltyRepo.save(penalty);
+        return this.modelMapper.map(newPenalty, PenaltyDto.class);
     }
 
     @Override
     public PenaltyDto getPenaltyById(Integer penaltyId) {
 
-        Penalty penalty = this.penaltyRepo.findById(penaltyId).orElseThrow(()-> new ResourceNotFoundException("Penalty","Penalty id",penaltyId));
+        Penalty penalty = this.penaltyRepo.findById(penaltyId).orElseThrow(() -> new ResourceNotFoundException("Penalty", "Penalty id", penaltyId));
 
-        return this.modelMapper.map(penalty,PenaltyDto.class);
+        return this.modelMapper.map(penalty, PenaltyDto.class);
     }
 
     @Override
     public List<PenaltyDto> getPenaltyByUser(Integer userId) {
 
-        User user = this.userRepo.findById(userId).orElseThrow(()->new ResourceNotFoundException("User"," user id", userId));
+        User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", " user id", userId));
         List<Penalty> penalties = this.penaltyRepo.findByUser(user);
 
-        List<PenaltyDto> penaltyDtos = penalties.stream().map((penalty)-> this.modelMapper.map(penalty,PenaltyDto.class)).collect(Collectors.toList());
+        List<PenaltyDto> penaltyDtos = penalties.stream().map((penalty) -> this.modelMapper.map(penalty, PenaltyDto.class)).collect(Collectors.toList());
 
         return penaltyDtos;
 

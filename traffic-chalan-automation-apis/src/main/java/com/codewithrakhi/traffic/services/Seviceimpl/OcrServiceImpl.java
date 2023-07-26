@@ -26,7 +26,7 @@ public class OcrServiceImpl implements OcrService {
 
         try {
             Tesseract tesseract = new Tesseract();
-                                  // tesseract.setDataPath(e.getProperty(key));
+            // tesseract.setDataPath(e.getProperty(key));
             tesseract.setDatapath("E:\\traffic violation project\\traffic-chalan-automation-apis\\tessdata"); // Set the path to the tessdata directory
             tesseract.setLanguage("eng"); // Set the language of the text to be extracted
 
@@ -38,13 +38,9 @@ public class OcrServiceImpl implements OcrService {
 
             return result;
 
-        }
-        catch (TesseractException ex)
-        {
+        } catch (TesseractException ex) {
             ex.printStackTrace();
-        }
-        catch (IOException ex)
-        {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
 

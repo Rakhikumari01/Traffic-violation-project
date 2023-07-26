@@ -2,6 +2,7 @@ package com.codewithrakhi.traffic.services;
 
 
 import com.codewithrakhi.traffic.payload.PenaltyDto;
+
 import java.util.List;
 
 public interface PenaltyService {
@@ -10,7 +11,7 @@ public interface PenaltyService {
 
     void deletePenalty(Integer penaltyId);
 
-    PenaltyDto updatePenalty(PenaltyDto penaltyDto,Integer penaltyId);
+    PenaltyDto updatePenalty(PenaltyDto penaltyDto, Integer penaltyId);
 
     PenaltyDto getPenaltyById(Integer penaltyId);
 

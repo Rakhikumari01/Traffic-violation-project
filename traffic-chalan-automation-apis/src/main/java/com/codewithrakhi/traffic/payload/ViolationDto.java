@@ -16,17 +16,17 @@ import java.util.Date;
 
 public class ViolationDto {
 
- private int violationId;
+    private int violationId;
 
- @NotEmpty()
- @Size(min=50,message = "violation title should not exceed 50 characters")
- private String violationTitle;
+    @NotEmpty()
+    @Size(min = 50, message = "violation title should not exceed 50 characters")
+    private String violationTitle;
 
- @NotEmpty
- private String violationImage;
+    @NotEmpty
+    private String violationImage;
 
- private Date addedDate;
+    private Date addedDate;
 
- private UserDto user;
+    private UserDto user;
 
 }

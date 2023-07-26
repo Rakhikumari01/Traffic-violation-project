@@ -21,11 +21,10 @@ public class UserServiceImpl implements UserService {
     private UserRepo userRepo;
 
     @Autowired
-   private ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
     @Override
-    public UserDto createUser(UserDto userDto)
-    {
+    public UserDto createUser(UserDto userDto) {
         User user = this.dtoToUser(userDto);
 
         User savedUser = this.userRepo.save(user);
@@ -34,9 +33,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto updateUser(UserDto userDto, Integer userId)
-    {
-        User user = this.userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException("User","Id",userId));
+    public UserDto updateUser(UserDto userDto, Integer userId) {
+        User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "Id", userId));
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
         user.setDepartment(userDto.getDepartment());
@@ -51,18 +49,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUserById( Integer userId)
-    {
-        User user = this.userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException("User","Id",userId));
+    public UserDto getUserById(Integer userId) {
+        User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "Id", userId));
 
         return this.userToDto(user);
     }
 
     @Override
-    public List<UserDto> getAllUser()
-    {
-       List<User> users = this.userRepo.findAll();
-       List<UserDto> userDtos = users.stream().map(user -> this.userToDto(user)).collect(Collectors.toList());
+    public List<UserDto> getAllUser() {
+        List<User> users = this.userRepo.findAll();
+        List<UserDto> userDtos = users.stream().map(user -> this.userToDto(user)).collect(Collectors.toList());
 
         return userDtos;
     }
@@ -78,23 +74,20 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void deleteUser(Integer userId)
-    {
-        User user = this.userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException("User","Id",userId));
+    public void deleteUser(Integer userId) {
+        User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "Id", userId));
 
         this.userRepo.delete(user);
     }
 
-    private User dtoToUser(UserDto userDto)
-    {
-        User user= this.modelMapper.map(userDto,User.class);
+    private User dtoToUser(UserDto userDto) {
+        User user = this.modelMapper.map(userDto, User.class);
         return user;
 
     }
 
-    private UserDto userToDto(User user)
-    {
-        UserDto userDto = this.modelMapper.map(user,UserDto.class);
+    private UserDto userToDto(User user) {
+        UserDto userDto = this.modelMapper.map(user, UserDto.class);
         return userDto;
     }
 }
