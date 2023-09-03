@@ -24,4 +24,5 @@ public class Penalty {
     @ManyToOne
     private User user;
 
+
 }

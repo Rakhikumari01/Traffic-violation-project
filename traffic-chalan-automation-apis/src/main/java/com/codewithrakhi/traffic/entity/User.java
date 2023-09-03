@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name="users")
+@Table(name = "users")
 
 
 public class User {
@@ -22,8 +22,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int tata_user_id;
 
-    @Column(name="tata_user_name", nullable = false,length =100)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Column(name = "tata_user_name", nullable = false, length = 100)
     private String name;
+
 
     private String email;
 

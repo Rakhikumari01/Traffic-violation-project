@@ -5,6 +5,7 @@ import com.codewithrakhi.traffic.exception.ResourceNotFoundException;
 import com.codewithrakhi.traffic.payload.UserDto;
 import com.codewithrakhi.traffic.repositories.UserRepo;
 import com.codewithrakhi.traffic.services.UserService;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserDto updateUser(UserDto userDto, Integer userId) {
         User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "Id", userId));
         user.setName(userDto.getName());
