@@ -26,5 +26,5 @@ public class Violation {
     @ManyToOne
     private User user;
 
-    //mapping
+
 }

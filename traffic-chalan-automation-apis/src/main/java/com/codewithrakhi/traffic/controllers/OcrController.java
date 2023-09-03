@@ -21,5 +21,7 @@ public class OcrController {
         return ocrService.readImageText(image);
 
 
+
+
     }
 }
